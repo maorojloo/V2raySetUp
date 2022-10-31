@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <title>راهنمای راه‌اندازی</title>
+    <style>
+        body {
+            direction: rtl;
+            margin: auto;
+            padding: 0;
+            background: black;
+        }
+
+        header {
+            background: black;
+            padding: 5px 0;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            padding: 10vh 0;
+        }
+
+        main {
+            background: white;
+        }
+
+        main section {
+            padding: 10px;
+        }
+
+        main section:first-of-type {
+            border-right: solid 10px #20c997;
+            background: rgba(32, 201, 151, 0.1);
+        }
+
+        main section:last-of-type {
+            border-right: solid 10px #0d6efd;
+            background: rgba(13, 110, 253, 0.1);
+        }
+
+        main kbd {
+            background: #f1f1f1;
+            border: solid 1px #9f9f9f;
+            border-radius: 5px;
+            padding: 0 5px;
+            white-space: nowrap;
+        }
+
+        main div:has(a) {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            flex-wrap: wrap;
+        }
+
+        main div a {
+            background: #000000;
+            border-radius: 5px;
+            display: block;
+            padding: 5px;
+            margin: 5px;
+            text-decoration: none;
+            color: white;
+            font-size: small;
+        }
+
+        main div:has(textarea) {
+            display: flex;
+            flex-direction: row;
+        }
+
+        main div textarea {
+            flex: 1;
+            padding: 5px;
+            text-align: left;
+            border-radius: 5px;
+            font-size: xx-small;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>راهنمای راه‌اندازی</h1>
+</header>
+<main>
+    <section>
+        <h2>Outline (گزینه ساده)</h2>
+        <p>برای به‌کارگیری Outline نخست آنرا با یکی از گزینه های زیر دریافت کنید.</p>
+        <div>
+            <a href="//play.google.com/store/apps/details?id=org.outline.android.client"
+               target="_blank">Android</a>
+            <a href="//apps.apple.com/us/app/outline-app/id1356177741"
+               target="_blank">iOS</a>
+            <a href="//raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/stable/Outline-Client.exe"
+               target="_blank">Windows</a>
+            <a href="//itunes.apple.com/us/app/outline-app/id1356178125"
+               target="_blank">macOS</a>
+        </div>
+        <p>نوشته زیر را Copy کنید.</p>
+        <div>
+            <textarea title="Access key" readonly>ss://proxy#name</textarea>
+        </div>
+        <p>
+            برنامه Outline را باز کنید.
+            بر روی <kbd>+</kbd> یا <kbd>Add server</kbd> بزنید.
+            نوشته را در جایگاه access key بگذارید.
+            بر روی دکمه <kbd>ADD SERVER</kbd> که پس از زمان کوتاهی پدیدار می‌شود بزنید تا Server به برنامه افزوده شود.
+        </p>
+    </section>
+    <section>
+        <h2>VMESS (گزینه پیشنهادی)</h2>
+        <p>برای به‌کارگیری VMESS نخست یکی از برنامه های زیر را دریافت کنید.</p>
+        <div>
+            <a href="https://github.com/2dust/v2rayNG"
+               target="_blank">Android (v2rayNG)</a>
+            <a href="https://apps.apple.com/us/app/shadowlink-shadowsocks-vpn/id1439686518"
+               target="_blank">iOS (ShadowLink)</a>
+            <a href="https://qv2ray.net"
+               target="_blank">Windows (Qv2ray)</a>
+            <a href="https://github.com/Cenmrev/V2RayX/releases"
+               target="_blank">macOS (V2RayX)</a>
+        </div>
+        <p>نوشته زیر را Copy کنید.</p>
+        <div>
+            <textarea title="VMESS Link" readonly>vmess://etc</textarea>
+        </div>
+        <p>
+            در برنامه Android:
+            <br>
+            <small>
+                روی <kbd>+</kbd> و سپس <kbd>Import config from Clipboard</kbd> بزنید تا Server به برنامه افزوده شود.
+            </small>
+        </p>
+        <p>
+            در برنامه iOS:
+            <br>
+            <small>
+                روی <kbd>Server</kbd>، سپس <kbd>+</kbd> و سپس <kbd>Server links</kbd> بزنید تا Server به برنامه افزوده
+                شود.
+            </small>
+        </p>
+        <p>
+            در برنامه Windows:
+            <br>
+            <small>
+                روی <kbd>Import+</kbd> بزنید و نوشته را در بخش Share Link بچسبانید و روی <kbd>Import</kbd> بزنید.
+            </small>
+        </p>
+        <p>
+            در برنامه macOS:
+            <br>
+            <small>
+                روی <kbd>Configure</kbd>، سپس <kbd>...Import</kbd> و سپس <kbd>...Import from other links</kbd> بزنید.
+            </small>
+        </p>
+    </section>
+</main>
+
+<script>
+    let copyable = function () {
+        this.select();
+        this.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(this.value);
+    };
+
+    const inputs = document.getElementsByTagName('textarea');
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].onclick = copyable
+    }
+</script>
+
+</body>
+</html>
