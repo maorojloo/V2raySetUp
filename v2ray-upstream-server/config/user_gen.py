@@ -3,7 +3,7 @@ import json
 import uuid
 import base64
 import socket
-
+import pyqrcode
 
 
 
@@ -19,7 +19,7 @@ s.close()
 
 
 name=input("name=>")
-servername=input("servername=>")
+servername="hkhkhkhi"
 Port=input("Port=>")
 connection_type=input("connection type=>")
 
@@ -60,10 +60,21 @@ base64_string = base64_bytes.decode("ascii")
 
 
 
-
-uri="vmess://"+base64_string
 print("======================================================================================================")
 print()
+
+uri="vmess://"+base64_string
+
 print(uri)
+print()
+print()
+
+
+url = pyqrcode.create(uri)
+url.svg('uca-url.svg', scale=8)
+url.eps('uca-url.eps', scale=2)
+print(url.terminal(quiet_zone=1))
+
+
 print()
 print("======================================================================================================")
