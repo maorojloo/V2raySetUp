@@ -28,7 +28,7 @@ email=name+"@"+servername+".meow"
 uuid=str(uuid.uuid4())
 
 new_User={"id": uuid, "alterId": 0, "security": "none", "email":email}
-json_object['inbounds'][0]['settings']['clients'].append(new_User)
+json_object['inbounds'][3]['settings']['clients'].append(new_User)
 
 json_object=json.dumps(json_object, sort_keys=True, indent=4)
 
