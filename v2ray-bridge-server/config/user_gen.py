@@ -5,7 +5,11 @@ import base64
 import socket
 import pyqrcode
 
-
+def get_random_string(length):
+    # choose from all lowercase letter
+    letters = string.ascii_lowercase
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    print("Random string of length", length, "is:", result_str)
 
 with open('config.json', 'r') as openfile:
     json_object = json.load(openfile)
@@ -24,7 +28,7 @@ Port=input("Port=>")
 connection_type=input("connection type=>")
 
 
-email=name+"@"+servername+".meow"
+email=name+"@"+servername+get_random_string(6)+".meow"
 uuid=str(uuid.uuid4())
 
 new_User={"id": uuid, "alterId": 0, "security": "none", "email":email}
