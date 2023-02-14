@@ -9,6 +9,7 @@ class InboundClientIps(models.Model):
 
     class Meta:
         db_table = 'inbound_client_ips'
+        managed = False
 
 
 class Inbounds(models.Model):
@@ -31,6 +32,7 @@ class Inbounds(models.Model):
     class Meta:
         
         db_table = 'inbounds'
+        managed = False
 
 
 class Settings(models.Model):
@@ -41,6 +43,7 @@ class Settings(models.Model):
     class Meta:
         
         db_table = 'settings'
+        managed = False
 
 
 class Users(models.Model):
@@ -51,6 +54,7 @@ class Users(models.Model):
     class Meta:
         
         db_table = 'users'
+        managed = False
 
 class ClientTraffics(models.Model):
     id = models.AutoField(primary_key=True)
@@ -64,4 +68,21 @@ class ClientTraffics(models.Model):
 
     class Meta:    
         db_table = 'client_traffics'
+        managed = False
+        
+
+class UsersUri(models.Model):
+    telegram_id = models.OneToOneField("TelegramUsers", on_delete=models.CASCADE,primary_key = True)
+    user_id=models.TextField()
+
+    class Meta:    
+        db_table = 'usersUri'
+
+class TelegramUsers(models.Model):
+    telegram_id = models.IntegerField(primary_key = True)
+    client_count=models.TextField()
+
+    class Meta:    
+        db_table = 'TelegramUsers'
+        
 

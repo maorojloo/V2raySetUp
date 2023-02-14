@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usermanagemnt',
     'rest_framework',
-
+ 
 
 ]
 
@@ -84,7 +84,7 @@ DATABASES = {
     },
     'xui': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'x-ui.db',
+        'NAME': '/etc/x-ui/x-ui.db',
     }
 }
 
