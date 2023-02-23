@@ -1,0 +1,10 @@
+services:
+  backend:
+    build: ./backend
+    container_name: xui-usermangemebnt-mainserver
+    command: python manage.py runserver 0.0.0.0:8001
+    ports:
+      - 8001:8001
+    volumes:
+      - /etc/x-ui/mainserverDB/:/etc/x-ui/mainserverDB
+
