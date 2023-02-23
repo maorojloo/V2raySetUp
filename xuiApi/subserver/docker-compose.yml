@@ -1,7 +1,7 @@
 services:
   backend:
     build: ./xuiSubServer
-    container_name: exprimental_pcpos_system_backend
+    container_name: xui_singleuser_api_sebserver
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - 8000:8000
