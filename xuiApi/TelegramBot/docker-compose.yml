@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  xuitelbot:
+    build:
+      context: ./xuitelbot
+    container_name: xuitelbot
+    command: python telbot.py
