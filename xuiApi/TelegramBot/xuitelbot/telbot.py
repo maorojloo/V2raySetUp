@@ -20,31 +20,6 @@ app = Client(
 
     )
 
-"""
-@app.on_message(filters.text)
-def voi(c, msg: Message):
-    app.send_message(
-        msg.chat.id,  # Change this to your username or id
-        "دریافت کانفیگ؟",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("آره بابا خرابه!!!", msg.chat)]]
-        )
-    )
-
-"""
-
-#app.send_message(
-#        msg.chat.id,  # Change this to your username or id
-#        "سلام خوش اومدین میخواین کانفیگ دریافت کنید؟",
-#        reply_markup=InlineKeyboardMarkup(
-#            [[InlineKeyboardButton("بله", msg.chat)]]
-#        )
-#    )
-
-
-
-
-
 @app.on_message(filters.command("start"))
 def start_handler(client, message):
     # do something
@@ -83,8 +58,9 @@ def start_handler(client, message):
     responceJson=responce.json()
 
     if(responceJson["success"]=='1'):
-
-        if(responceJson["new"]=="1"):
+        if (int(responceJson["delta"])>0)
+            data="به کانفیگ های شما به تعداد"+responceJson["delta"]+"اضافه شد این کانفیگ جدید حد اکثر تا ۵ دقیقه اینده فعال میشود"
+        if(responceJson["new"]=="1" and int(responceJson["delta"])==0):
             data="\n برای دریافت کانفیگ مجددا /getconfigs  تا فعال شدن کانفیگ های خود حد اکثر <b> ۵ دقیقه </b> صبر کنید"
             client.send_message(chat_id=message.chat.id, text=data)
         #userathenticated            
@@ -104,7 +80,7 @@ def start_handler(client, message):
 
 
     if(responceJson["success"]=='69'):
-        responcedata="خطای 69 \n حساب کاربری شما ثیت نشده است"
+        responcedata="خطای ۶۹ \n حساب کاربری شما یافت نشد \n (اگر ثبت سفارش کرده اید و با این خطا رو به رو می شوید با ادمین تماس بگیرید)"
         client.send_message(chat_id=message.chat.id, text=responcedata)
   
     
@@ -129,16 +105,5 @@ def retreive_text(c, msg: Message):
         msg.chat.id,  # Change this to your username or id
         " /help را وارد کنید سلام خوش اومدین میخواین کانفیگ دریافت کنید؟"
     )
-    #    reply_markup=InlineKeyboardMarkup(
-    #        [[InlineKeyboardButton("بله", msg.chat)]]
-    #    )
-    #)    
-    #print(msg)
-
-# @app.on_message(filters.command(["/config"]))
-# async def my_handler(client, message):
-#     # Api req goes here 
-    
-#     print('This is the /config command')
 
 app.run()
