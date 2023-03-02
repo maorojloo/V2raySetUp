@@ -7,6 +7,7 @@ import os
 import time 
 import requests
 import ast
+import urllib.parse
 
 #with open("Secret.json") as fp:
 #    sec = json.load(fp)
@@ -15,7 +16,7 @@ app = Client(
 	"v2ray_bot",
 	api_id = '1029037',
 	api_hash = 'ffb67d45441d83512348881f6b69e3ed',
-	bot_token="6073845735:AAH251rPL1bbUlxEsrzNtQxWozBG4PjUjNA",
+	bot_token="5990771248:AAE5-1qakfJjULCicoI1BP7e9Ol7-GKQZg0",
 
     )
 
@@ -52,7 +53,7 @@ def start_handler(client, message):
 @app.on_message(filters.command("help"))
 def start_handler(client, message):
     # do something
-    client.send_message(chat_id=message.chat.id, text="دریافت کانفیگ ها /getconfigs \n برای اطاعات توسعه دهنده /aboutdev \n /myid جهت دریافت ایدی تلگرام خودتون")
+    client.send_message(chat_id=message.chat.id, text="دریافت کانفیگ ها /getconfigs \n برای اطاعات توسعه دهنده /aboutdev \n آموزش استفاده /howToUseConfigs \n /myid جهت دریافت ایدی تلگرام خودتون")
 
 
 @app.on_message(filters.command("aboutdev"))
@@ -65,12 +66,18 @@ def start_handler(client, message):
     # do something
     client.send_message(chat_id=message.chat.id, text=message.chat.id)
 
+@app.on_message(filters.command("howToUseConfigs"))
+def start_handler(client, message):
+    # do something
+    data="آموزش استفاده در کلاینت(گوشی لپتاپ سیستم عامل)  مختلف در کانال @mmdofhowto قرار دارد."
+    client.send_message(chat_id=message.chat.id, text=data)
+
+
 
 @app.on_message(filters.command("getconfigs"))
 def start_handler(client, message):
     responcedata=''
     user_id = message.chat.id
-    user_id=87
     endPoint='http://api.gozaraztah.store:8001/api/telegram/geturi/'+str(user_id)
     responce= requests.get(endPoint)
     responceJson=responce.json()
@@ -78,7 +85,7 @@ def start_handler(client, message):
     if(responceJson["success"]=='1'):
 
         if(responceJson["new"]=="1"):
-            data="\n برای دریافت کانفیگ مجددا/getconfigs  تا فعال شدن کانفیگ های خود حد اکثر ۵ دقیقه صبر کنید"
+            data="\n برای دریافت کانفیگ مجددا /getconfigs  تا فعال شدن کانفیگ های خود حد اکثر <b> ۵ دقیقه </b> صبر کنید"
             client.send_message(chat_id=message.chat.id, text=data)
         #userathenticated            
         uriList = responceJson["uri"]
@@ -89,7 +96,7 @@ def start_handler(client, message):
 
         client.send_message(chat_id=message.chat.id, text=msg)
         for uri in uriList:
-            client.send_message(chat_id=message.chat.id, text=uri)
+            client.send_message(chat_id=message.chat.id, text="<code>"+uri+"</code>"+"\n"+'<a href="https://qr-code.ir/api/qr-code/?d='+urllib.parse.quote(uri)+'">مشاهده کبوآر کد کانفیگ</a>')
 
         if(responceJson["new"]=="0"):
             data='کانفیگ های ثبت شده شما مجددا ارسال شد '
@@ -120,7 +127,7 @@ def retreive_text(c, msg: Message):
 
     app.send_message(
         msg.chat.id,  # Change this to your username or id
-        "سلام خوش اومدین میخواین کانفیگ دریافت کنید؟"
+        " /help را وارد کنید سلام خوش اومدین میخواین کانفیگ دریافت کنید؟"
     )
     #    reply_markup=InlineKeyboardMarkup(
     #        [[InlineKeyboardButton("بله", msg.chat)]]
