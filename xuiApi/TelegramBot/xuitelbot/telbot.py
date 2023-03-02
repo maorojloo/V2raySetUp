@@ -58,8 +58,9 @@ def start_handler(client, message):
     responceJson=responce.json()
 
     if(responceJson["success"]=='1'):
-        if (int(responceJson["delta"])>0)
+        if (int(responceJson["delta"])!=0):
             data="به کانفیگ های شما به تعداد"+responceJson["delta"]+"اضافه شد این کانفیگ جدید حد اکثر تا ۵ دقیقه اینده فعال میشود"
+            client.send_message(chat_id=message.chat.id, text=data)
         if(responceJson["new"]=="1" and int(responceJson["delta"])==0):
             data="\n برای دریافت کانفیگ مجددا /getconfigs  تا فعال شدن کانفیگ های خود حد اکثر <b> ۵ دقیقه </b> صبر کنید"
             client.send_message(chat_id=message.chat.id, text=data)
@@ -82,7 +83,7 @@ def start_handler(client, message):
     if(responceJson["success"]=='69'):
         responcedata="خطای ۶۹ \n حساب کاربری شما یافت نشد \n (اگر ثبت سفارش کرده اید و با این خطا رو به رو می شوید با ادمین تماس بگیرید)"
         client.send_message(chat_id=message.chat.id, text=responcedata)
-  
+
     
 
 

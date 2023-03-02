@@ -53,7 +53,7 @@ def geturiTelegram(request,telId):
             user_uri_count=int(user.client_count)
             #equal
             if(len(urilist)==user_uri_count):
-                uri={"uri":user_uri.user_id,'success':'1',"new":"0"}
+                uri={"uri":user_uri.user_id,'success':'1',"new":"0","delta":0}
             #increse
             if(len(urilist)<user_uri_count):
                 delta=user_uri_count-len(urilist)
@@ -71,10 +71,10 @@ def geturiTelegram(request,telId):
                 uri+=[genuri()['uri']]
             q = models.UsersUri(telegram_id=user, user_id=uri)
             q.save()
-            uri={"uri":str(uri),'success':'1',"new":"1"}
+            uri={"uri":str(uri),'success':'1',"new":"1","delta":0}
 
     else:
-        uri={"uri":"kir","success":"69","new":"kosMadarKameneii"}
+        uri={"uri":"kir","success":"69","new":"kosMadarKameneii","delta":0}
 
     return Response(uri)
     
