@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  xuitelbot:
+    build:
+      context: ./tel_new_user_bot
+    container_name: tel_new_user_bot
+    command: python telbot.py
