@@ -22,10 +22,12 @@ def retreive_text(c, msg: Message):
     list=ast.literal_eval(msg)
  
     for l in list:
-        url=['http://api.gozaraztah.store:8001/api/telegram/addnewuser/'+str(l[0])+'/'+str(l[1])+'/']
-        r = requests.get(url = url) 
+        url='http://api.gozaraztah.store:8001/api/telegram/addnewuser/'+str(l[0])+'/'+str(l[1])+'/'
+        r = requests.get(url) 
         data = r.json()
         app.send_message(msg.chat.id,str(data))
 
     app.send_message(msg.chat.id,"done")
 app.run()
+
+ 
