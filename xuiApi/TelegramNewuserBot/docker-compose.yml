@@ -6,3 +6,4 @@ services:
       context: ./tel_new_user_bot
     container_name: tel_new_user_bot
     command: python telbot.py
+    restart: always

@@ -6,3 +6,4 @@ services:
       context: ./xuitelbot
     container_name: xuitelbot
     command: python telbot.py
+    restart: always
