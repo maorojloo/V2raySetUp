@@ -12,13 +12,13 @@ from sequences import get_next_value
 from ast import literal_eval
 
 import requests
-
+import re
 
 
 
 def genuri():
-    server_EndPoint=['http://46.245.76.234:8000/api/geturi/','http://31.7.76.105:8000/api/geturi/']
-
+   # server_EndPoint=['http://46.245.76.234:8000/api/geturi/','http://31.7.76.105:8000/api/geturi/','http://109.122.199.26:8000/api/geturi/']
+    server_EndPoint=['http://109.122.199.26:8000/api/geturi/']
     server_number=get_next_value("server", initial_value=0, reset_value=len(server_EndPoint))
     
     r = requests.get(url = server_EndPoint[server_number])
@@ -90,6 +90,34 @@ def addTelegramUseer(request,telId,userCount):
 
     return Response(data)
     
+@api_view()
+def deluri(request,domain):
+    pattern = r'@(.*):'
+    mmd=''
+
+    all_records = models.UsersUri.objects.all()
+
+    for record in all_records:
+        urilist=literal_eval(record.user_id)
+
+        for uri_list in urilist :
+            string =uri_list
+            # return Response({str(type(string)):str(string)})
+            match = re.search(pattern, string)
+            if match[1]==domain:
+                urilist.remove(string)
+
+        record.user_id=str(urilist)
+        record.save()
+
+    
+
+                
+                
+
+
+
+    return Response({"txt":mmd})
 
     
 
